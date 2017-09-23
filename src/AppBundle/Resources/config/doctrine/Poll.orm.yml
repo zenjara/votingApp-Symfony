@@ -1,0 +1,28 @@
+AppBundle\Entity\Poll:
+    type: entity
+    table: polls
+    repositoryClass: AppBundle\Repository\PollRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        createdAt:
+            type: date
+    manyToOne:
+        user:
+            targetEntity: AppBundle\Entity\User
+            inversedBy: polls
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+    oneToMany:
+        pollItems:
+            targetEntity: AppBundle\Entity\PollItem
+            mappedBy: poll
+    lifecycleCallbacks: {  }

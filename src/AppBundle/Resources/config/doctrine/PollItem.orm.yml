@@ -1,0 +1,25 @@
+AppBundle\Entity\PollItem:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\PollItemRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        noOfVotes:
+            type: integer
+            nullable: true
+    manyToOne:
+        poll:
+            targetEntity: Poll
+            inversedBy: pollItems
+            joinColumn:
+                name: poll_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }
