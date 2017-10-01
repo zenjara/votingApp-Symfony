@@ -1,0 +1,15 @@
+.jumbotron{
+    /*background-image: url("https://timedotcom.files.wordpress.com/2017/05/gettyimages-138711450.jpg?quality=85");*/
+    background: rgba(0,0,0,0.8);
+    /*height: 500px;*/
+    color: white;
+}
+
+#registration {
+    display: table;
+    margin: 10% auto;
+}
+
+/*input {*/
+    /*background: rgba(0,0,0,0.5);*/
+/*}*/

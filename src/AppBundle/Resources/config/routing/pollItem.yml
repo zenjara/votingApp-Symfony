@@ -1,0 +1,8 @@
+
+app.poll_item_increase:
+    path: /pollItem/{id}/increase
+    defaults: { _controller: AppBundle:PollItem:increaseNoOfVotes }
+
+app.poll_item_decrease:
+    path: /pollItem/{id}/decrease
+    defaults: { _controller: AppBundle:PollItem:decreaseNoOfVotes }

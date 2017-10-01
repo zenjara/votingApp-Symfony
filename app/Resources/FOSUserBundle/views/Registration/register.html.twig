@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {% include "@FOSUser/Registration/register_content.html.twig" %}
+{% endblock body %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset("assets/index.css") }}">
+{% endblock %}

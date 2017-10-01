@@ -1,0 +1,14 @@
+{{ form_start(form) }}
+
+<h3>Poll name</h3>
+{{ form_widget(form.name) }}
+<h3>Options</h3>
+<ul class="pollItems"  data-prototype="{{ form_widget(form.pollItems.vars.prototype)|e('html_attr') }}" >
+    {#iterate over each existing tag and render its only field: name#}
+    {% for pollItem in form.pollItems %}
+        <li>{{ form_row(pollItem.name)  }}</li>
+    {% endfor %}
+</ul>
+
+{{ form_end(form) }}
+

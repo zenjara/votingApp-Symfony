@@ -25,4 +25,5 @@ AppBundle\Entity\Poll:
         pollItems:
             targetEntity: AppBundle\Entity\PollItem
             mappedBy: poll
+            cascade: ["persist"]
     lifecycleCallbacks: {  }

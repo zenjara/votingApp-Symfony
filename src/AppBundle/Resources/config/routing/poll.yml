@@ -1,0 +1,23 @@
+app.homepage:
+    path: /
+    defaults: { _controller: AppBundle:Poll:homepage }
+
+app.poll_index:
+    path: /polls
+    defaults: { _controller: AppBundle:Poll:index }
+
+app.poll_new:
+    path: /polls/new
+    defaults: { _controller: AppBundle:Poll:new }
+
+app.poll_create:
+    path: /polls
+    defaults: { _controller: AppBundle:Poll:new }
+
+app.poll_show:
+    path: /polls/{id}
+    defaults: { _controller: AppBundle:Poll:show }
+
+app.poll_edit:
+    path: /polls/{id}/edit
+    defaults: { _controller: AppBundle:Poll:edit }

@@ -37,6 +37,7 @@ class Poll
      public function __construct()
      {
          $this->pollItems = new ArrayCollection();
+         $this->setCreatedAt(new \DateTime());
      }
 
 
@@ -128,7 +129,10 @@ class Poll
      */
     public function addPollItem($pollItem)
     {
-        $this->pollItems = $pollItem;
+
+        $this->pollItems[] = $pollItem;
+
+        $pollItem->setPoll($this);
 
         return $this;
     }

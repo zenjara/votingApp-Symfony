@@ -1,9 +1,36 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Voting App</h1>
+    <div class="container-fluid">
+        <div class="jumbotron">
+            {% if app.user %}
+                <h1>Welcome {{ app.user.username }}</h1>
+                <p><a class="btn btn-primary btn-lg" href="{{ path("fos_user_registration_register") }}"
+                      role="button">Create new Poll</a></p>
+            {% else %}
+                <h1>Voting app</h1>
+                <p>Vote on existing polls, or register and create your own to share it with the people!</p>
+                <p><a class="btn btn-primary btn-lg" href="{{ path("fos_user_registration_register") }}" role="button">Register</a></p>
+            {% endif %}
+             </div>
+    </div>
+    <div class="container">
+        {% if polls is defined %}
+            {% for poll in polls %}
+                <div class="poll">
+                    <h3>{{ poll.name }}</h3>
+                    {% for item in poll.pollItems %}
+                        <a href="{{ path("app.poll_item_increase",{"id":item.id}) }}" class="btn btn-info"> {{ item.name }}</a>
+                        <span class="vote">{{ item.noOfVotes }}</span>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <h3>There are no polls created yet..</h3>
+        {% endif %}
+    </div>
 {% endblock %}
 
 {% block stylesheets %}
-
+    <link rel="stylesheet" href="{{ asset("assets/index.css") }}">
 {% endblock %}

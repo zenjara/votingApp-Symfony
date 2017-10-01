@@ -1,5 +1,9 @@
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+app_poll:
+    resource: '@AppBundle/Resources/config/routing/poll.yml'
+app_poll_item:
+    resource: '@AppBundle/Resources/config/routing/pollItem.yml'
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+
+

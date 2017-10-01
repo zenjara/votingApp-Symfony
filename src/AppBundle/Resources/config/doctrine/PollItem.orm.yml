@@ -22,4 +22,6 @@ AppBundle\Entity\PollItem:
             joinColumn:
                 name: poll_id
                 referencedColumnName: id
+            cascade: ["persist"]
+#            cascade: persist
     lifecycleCallbacks: {  }

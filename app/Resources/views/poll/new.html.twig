@@ -1,0 +1,77 @@
+{{ form_start(form) }}
+
+<h3>Poll name</h3>
+{{ form_widget(form.name) }}
+<h3>Options</h3>
+<ul class="pollItems"  data-prototype="{{ form_widget(form.pollItems.vars.prototype)|e('html_attr') }}" >
+
+    {% for pollItem in form.pollItems %}
+        <li>{{ form_row(pollItem.name)  }}</li>
+    {% endfor %}
+</ul>
+
+{{ form_end(form) }}
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+<script>
+
+    var $collectionHolder;
+
+    // setup an "add a tag" link
+    var $addPollItemLink = $('<a href="#" class="add_poll_item_link">Add an option</a>');
+    var $newLinkLi = $('<li></li>').append($addPollItemLink);
+
+    jQuery(document).ready(function() {
+        $collectionHolder = $('ul.pollItems');
+
+        $collectionHolder.append($newLinkLi);
+        $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+        $addPollItemLink.on('click', function(e) {
+            e.preventDefault();
+
+            addPollItemForm($collectionHolder, $newLinkLi);
+        });
+
+        $collectionHolder.find('li').each(function() {
+            addTagFormDeleteLink($(this));
+        });
+    });
+
+    function addPollItemForm($collectionHolder, $newLinkLi) {
+        // Get the data-prototype explained earlier
+        var prototype = $collectionHolder.data('prototype');
+
+        // get the new index
+        var index = $collectionHolder.data('index');
+
+        var newForm = prototype;
+
+        newForm = newForm.replace(/__name__/g, index);
+
+        // increase the index with one for the next item
+        $collectionHolder.data('index', index + 1);
+
+
+
+        // Display the form in the page in an li, before the "Add a tag" link li
+        var $newFormLi = $('<li></li>').append(newForm);
+        $newLinkLi.before($newFormLi);
+        addTagFormDeleteLink($newFormLi);
+    }
+
+    function addTagFormDeleteLink($tagFormLi) {
+        var $removeFormA = $('<a href="#">Delete</a>');
+        $tagFormLi.append($removeFormA);
+
+        $removeFormA.on('click', function(e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+
+            // remove the li for the tag form
+            $tagFormLi.remove();
+        });
+    }
+</script>
